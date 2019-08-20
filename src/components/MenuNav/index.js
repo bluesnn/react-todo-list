@@ -1,6 +1,6 @@
 import React from 'react';
-import './MenuNav.scss';
 import { Link } from 'react-router-dom';
+import './style.scss';
 
 function MenuNav() {
   return (
