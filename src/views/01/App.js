@@ -3,7 +3,8 @@ import './App.css';
 import {
   TodoHeader,
   TodoInput,
-  TodoList
+  TodoList,
+  Like
 } from '../../components';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
       </TodoHeader>
       <TodoInput placeholder="请输入" />
       <TodoList list={list} />
+      <Like />
     </div>
   );
 }
