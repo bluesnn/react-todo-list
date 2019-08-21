@@ -9,10 +9,10 @@ import List from './views/02/App';
 const App = (
   <Router>
     <div className="wrapper">
-      <div>
+      <div className="left">
         <MenuNav />
       </div>
-      <div>
+      <div className="right">
         <Route path="/" exact component={Index} />
         <Route path="/list" exact component={List} />
       </div>

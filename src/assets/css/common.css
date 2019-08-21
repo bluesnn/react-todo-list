@@ -69,5 +69,13 @@ table {
   border-spacing: 0;
 }
 .wrapper {
+  width: 100vw;
   display: flex;
 }
+.left {
+  width: 10%;
+}
+.right {
+  width: 90%;
+}
+
