@@ -17,16 +17,39 @@ function App() {
     id: 1,
     title: 'apple',
     status: true
-  },]);
+  }]);
+
+  const addTodo = todoTitle => {
+    console.log(1)
+    list.push({
+      id: list.length,
+      title: todoTitle,
+      status: false
+    })
+    console.log(list)
+  }
+
 
   return (
     <div className="App">
       <TodoHeader desc="提醒事项">
         {tips}
       </TodoHeader>
-      <TodoInput placeholder="请输入" />
+      <TodoInput placeholder="请输入" addTodo={addTodo}/>
       <TodoList list={list} />
       <Like />
+      <ul>
+          {
+            list.map(item => {
+              return (
+                <li key = {item.id}>
+                  {item.title}
+                </li>
+              )
+            })
+          }
+
+      </ul>
     </div>
   );
 }

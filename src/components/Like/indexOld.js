@@ -12,8 +12,8 @@ export default class Like extends Component {
   //   this.setState({
   //     isLike: !this.state.isLike
   //   })
+  console.log(this)
     this.setState((state, props) => {
-      console.log(state, props)
       return {
         isLike: !state.isLike
       }

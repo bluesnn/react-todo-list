@@ -7,6 +7,7 @@ export default class TodoList extends Component {
   }
 
   render() {
+    console.log(this.props.list, 'a')
     return (
       <ul>
         {
