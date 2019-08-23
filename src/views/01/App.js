@@ -9,47 +9,39 @@ import {
 
 function App() {
   const [tips] = useState('事项列表1');
-  const [list] = useState([{
+  const [list, setList] = useState([{
     id: 0,
     title: 'banner',
-    status: false
+    status: true
   },{
     id: 1,
     title: 'apple',
-    status: true
+    status: false
   }]);
 
   const addTodo = todoTitle => {
-    console.log(1)
-    list.push({
+    const addData = [{
       id: list.length,
       title: todoTitle,
       status: false
-    })
-    console.log(list)
+    }]
+    setList(list.concat(addData))
   }
 
+  const changeState = id => {
+    // const itemState = !list[id].status;
+    console.log('aa')
+    // setList(newList[id].status= itemState)
+  }
 
   return (
     <div className="App">
       <TodoHeader desc="提醒事项">
         {tips}
       </TodoHeader>
-      <TodoInput placeholder="请输入" addTodo={addTodo}/>
-      <TodoList list={list} />
+      <TodoInput placeholder="请输入" addTodo={addTodo} />
+      <TodoList list={list} changeState={changeState} />
       <Like />
-      <ul>
-          {
-            list.map(item => {
-              return (
-                <li key = {item.id}>
-                  {item.title}
-                </li>
-              )
-            })
-          }
-
-      </ul>
     </div>
   );
 }

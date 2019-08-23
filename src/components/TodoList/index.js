@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import TodoItem from './TodoItem'
 
 export default class TodoList extends Component {
@@ -6,8 +7,15 @@ export default class TodoList extends Component {
     title: 'item'
   }
 
+  static propTypes = {
+    list: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      status: PropTypes.bool.isRequired,
+    })).isRequired
+  }
+
   render() {
-    console.log(this.props.list, 'a')
     return (
       <ul>
         {
@@ -15,8 +23,7 @@ export default class TodoList extends Component {
             return (
               <TodoItem
                 key = {el.id}
-                // title = {el.title}
-                // status = {el.status}
+                changeState={this.props.changeState}
                 {...el}
               />
             )
