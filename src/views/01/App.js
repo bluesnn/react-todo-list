@@ -20,18 +20,20 @@ function App() {
   }]);
 
   const addTodo = todoTitle => {
-    const addData = [{
+    setList([...list, {
       id: list.length,
       title: todoTitle,
       status: false
-    }]
-    setList(list.concat(addData))
+    }])
   }
 
   const changeState = id => {
-    // const itemState = !list[id].status;
-    console.log('aa')
-    // setList(newList[id].status= itemState)
+    setList(list.map(item => {
+      if (item.id === id) {
+        item.status = !item.status;
+      }
+      return item;
+    }))
   }
 
   return (
