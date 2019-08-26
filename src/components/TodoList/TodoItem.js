@@ -1,12 +1,11 @@
 import React from 'react'
 
-export default function TodoItem(props) {
-  const handleCheckboxChange = () => {
-    console.log(1)
-  }
+function TodoItem(props) {
+  const handleCheckboxChange = () => {}
 
   return (
     <li onClick={props.changeState.bind(this, props.id)}>
+    {console.log("56")}
       <input
         type="checkbox"
         checked={props.status}
@@ -16,3 +15,14 @@ export default function TodoItem(props) {
     </li>
   )
 }
+
+function areEqual(prevProps, nextProps) {
+  console.log(prevProps, nextProps)
+  if (prevProps.status === nextProps.status) {
+    return true
+  }else {
+      return false
+  }
+}
+
+export default React.memo(TodoItem, areEqual);

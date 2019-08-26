@@ -17,6 +17,14 @@ function App() {
     id: 1,
     title: 'apple',
     status: false
+  },{
+    id: 2,
+    title: 'apple',
+    status: false
+  },{
+    id: 3,
+    title: 'apple',
+    status: false
   }]);
 
   const addTodo = todoTitle => {
