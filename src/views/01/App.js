@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import {
   TodoHeader,
@@ -6,39 +6,52 @@ import {
   TodoList,
   Like
 } from '../../components';
+import { getTodos } from '../../services';
 
 function App() {
   const [tips] = useState('事项列表1');
   const [list, setList] = useState([{
     id: 0,
     title: 'banner',
-    status: true
+    completed: true
   },{
     id: 1,
     title: 'apple',
-    status: false
+    completed: false
   },{
     id: 2,
     title: 'apple',
-    status: false
+    completed: false
   },{
     id: 3,
     title: 'apple',
-    status: false
+    completed: false
   }]);
+
+  useEffect(() => {
+    getTodos().then(res => {
+      // setList(res.data)
+      console.log(res)
+    })
+  })
+  // componentDidMount() {
+  //   getTodos().then(res => {
+  //     console.log(res)
+  //   })
+  // }
 
   const addTodo = todoTitle => {
     setList([...list, {
       id: list.length,
       title: todoTitle,
-      status: false
+      completed: false
     }])
   }
 
   const changeState = id => {
     setList(list.map(item => {
       if (item.id === id) {
-        item.status = !item.status;
+        item.completed = !item.completed;
       }
       return item;
     }))
