@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import {
   TodoHeader,
@@ -6,43 +6,14 @@ import {
   TodoList,
   Like
 } from '../../components';
-import { getTodos } from '../../services';
+import useHackerApi from './useHackerApi';
 
 function App() {
-  const [tips] = useState('事项列表1');
-  const [list, setList] = useState([{
-    id: 0,
-    title: 'banner',
-    completed: true
-  },{
-    id: 1,
-    title: 'apple',
-    completed: false
-  },{
-    id: 2,
-    title: 'apple',
-    completed: false
-  },{
-    id: 3,
-    title: 'apple',
-    completed: false
-  }]);
-
-  useEffect(() => {
-    getTodos().then(res => {
-      // setList(res.data)
-      console.log(res)
-    })
-  })
-  // componentDidMount() {
-  //   getTodos().then(res => {
-  //     console.log(res)
-  //   })
-  // }
+  const {tips, list, setList, isLoading, isError} = useHackerApi();
 
   const addTodo = todoTitle => {
     setList([...list, {
-      id: list.length,
+      id: list.length + 1,
       title: todoTitle,
       completed: false
     }])
@@ -63,8 +34,13 @@ function App() {
         {tips}
       </TodoHeader>
       <TodoInput placeholder="请输入" addTodo={addTodo} />
-      <TodoList list={list} changeState={changeState} />
       <Like />
+      {
+        isLoading ?
+        <div>Loading ...</div> :
+        <TodoList list={list} changeState={changeState} />
+      }
+      {isError && <div>请求错误 ...</div>}
     </div>
   );
 }
