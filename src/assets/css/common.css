@@ -31,6 +31,7 @@ i {
 html,
 body {
   width: 100vw;
+  min-height: 100vh;
 }
 img {
   border: none;
@@ -66,7 +67,7 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-.wrapper {
+#root {
   width: 100vw;
   display: flex;
 }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>store</title>
+</head>
+<body>
+  <button onclick="store.dispatch({type: 'less', n: 1})">-</button>
+  <span class="number">100</span>
+  <button onclick="store.dispatch({type: 'plus', n: 1})">+</button>
+</body>
+</html>
+
+<script>
+const number = document.querySelector('.number')
+const state = {
+  count: 50
+}
+
+const changeState = action => {
+  switch (action.type) {
+    case 'less':
+      state.count -= action.n
+      break;
+    case 'plus':
+      state.count += action.n
+      break;
+    default:
+      break;
+  }
+}
+
+const createStore = (state, changeState) => {
+  const getState = () => state;
+  const listeners = [];
+
+  const subscribe = (listener) => listeners.push(listener);
+  const dispatch = action => {
+    changeState(action);
+    listeners.forEach(listener => listener())
+  }
+
+  return {
+    getState,
+    subscribe,
+    dispatch
+  }
+}
+
+const store = createStore(state, changeState)
+console.log(store)
+const renderCount = () => {
+  number.innerHTML = store.getState().count
+}
+renderCount()
+
+store.subscribe(renderCount)
+</script>

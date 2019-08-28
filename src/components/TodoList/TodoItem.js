@@ -2,12 +2,12 @@ import React, { memo } from 'react'
 
 function TodoItem(props) {
   const handleCheckboxChange = () => {}
-  const handleClick = id => {
-    props.changeState(id)
+  const handleClick = () => {
+    props.changeState(props.id)
   }
 
   return (
-    <li onClick={handleClick.bind(this, props.id)}>
+    <li onClick={handleClick}>
       <input
         type="checkbox"
         checked={props.completed}
