@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>store</title>
+  <title>redux</title>
 </head>
 
 <body>
@@ -19,20 +19,28 @@
       count: 50
     }
 
-    const changeState = (action) => {
+    const reducer = (state, action) => {
+      if (!state) return globalState;
+
       switch (action.type) {
         case 'less':
-          globalState.count -= action.n
-          break;
+          return {
+            ...state,
+            count: state.count - action.n
+          }
         case 'plus':
-          globalState.count += action.n
-          break;
+          return {
+            ...state,
+            count: state.count + action.n
+          }
         default:
-          break;
-      }
+          return state
+        }
+        console.log(state)
     }
 
-    const createStore = (state, changeState) => {
+    const createStore = (reducer) => {
+      let state = null;
       const getState = () => state;
       const listeners = [];
 
@@ -40,9 +48,10 @@
         listeners.push(listener)
       }
       const dispatch = action => {
-        changeState(action);
+        state = reducer(state, action);
         listeners.forEach(listener => listener())
       }
+      dispatch({});
 
       return {
         getState,
@@ -51,7 +60,7 @@
       }
     }
 
-    const store = createStore(globalState, changeState)
+    const store = createStore(reducer)
     console.log(store.getState())
     const renderCount = () => {
       number.innerHTML = store.getState().count
