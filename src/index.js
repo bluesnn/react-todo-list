@@ -5,6 +5,9 @@ import './assets/css/common.css';
 import MenuNav from './components/MenuNav';
 import Index from './views/TodoList';
 import Hoc from './views/Hoc';
+import Cart from './views/Cart';
+import ClassComponent from './views/Hook/ClassComponent';
+import HookComponent from './views/Hook/HookComponent';
 
 const App = (
   <Router>
@@ -13,7 +16,10 @@ const App = (
     </div>
     <div className="right">
       <Route path="/" exact component={Index} />
-      <Route path="/hoc" exact component={Hoc} />
+      <Route path="/hoc" component={Hoc} />
+      <Route path="/cart" component={Cart} />
+      <Route path="/class-component" component={ClassComponent} />
+      <Route path="/hook-component" component={HookComponent} />
     </div>
   </Router>
 );

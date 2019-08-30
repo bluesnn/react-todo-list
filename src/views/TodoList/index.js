@@ -10,7 +10,6 @@ import useHackerApi from './useHackerApi';
 
 function App() {
   const {tips, list, setList, isLoading, isError} = useHackerApi();
-
   const addTodo = todoTitle => {
     setList([...list, {
       id: list.length + 1,
