@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-
+import React, { Component, Fragment } from 'react';
+import { CartList } from "../../components";
 class Cart extends Component {
   render() {
     return (
-      <div>
-        121212
-      </div>
+      <Fragment>
+        <CartList />
+      </Fragment>
     );
   }
 }
